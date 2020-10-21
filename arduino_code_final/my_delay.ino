@@ -18,11 +18,11 @@ const int FON = A1;
 const int FIF = A2;
 const int SIN = A3;
 int lastSent = 0;
-int myPins[] = {FON,FIF,SIN,ONE, TWO, THR, FOU, FIV, SIX, SEV, EIG, NIN, TEN ,ELE, TWE, THI};
+int myPins[] = {FON,FIF,SIN,ONE, TWO, THR, FOU, FIV, SIX, SEV, EIG, TEN ,ELE, TWE, THI};
 bool myPinsSt[] = {false,false,false, false, false, false, false, false, false, false, false, false, false ,false, false, false,false,false,false,false};
 bool dirPinStat[] = {false,false,false, false, false, false, false, false, false, false, false, false, false ,false, false, false,false,false,false,false};
 
-int de = 30;
+int de = 50;
 bool locL = true;
 void setup() {
   Keyboard.begin();
@@ -35,7 +35,7 @@ void setup() {
     pinMode(SIX, INPUT);
     pinMode(SEV, INPUT);
     pinMode(EIG, INPUT);
-    pinMode(NIN, INPUT);
+//    pinMode(NIN, INPUT);
     pinMode(TEN, INPUT);
     pinMode(ELE, INPUT);
     pinMode(TWE, INPUT);
@@ -92,15 +92,14 @@ void loop() {
       dirPinStat[5] = false;
     }
 
-    if(digitalRead(9) == HIGH) {
-      if(dirPinStat[9] != true) {
-        Keyboard.press('s');  
-      }
-      dirPinStat[9] = true;
-    } else {
-      Keyboard.release('s');
-      dirPinStat[9] = false;
-    }
+//    if(digitalRsnStat[9] != true) {
+//        Keyboard.press('s');  
+//      }
+//      dirPinStat[9] = true;
+//    } else {
+//      Keyboard.release('s');
+//      dirPinStat[9] = false;
+//    }
 
     if(digitalRead(18) == HIGH) {
       if(dirPinStat[15] != true) {
@@ -129,7 +128,7 @@ void loop() {
       locL = false;
     }
   
-     for (byte i = 0; i < 16; i = i + 1) {
+     for (byte i = 0; i < 15; i = i + 1) {
         if(digitalRead(myPins[i]) == HIGH) {
 //          if(lastSent != myPins[i]) {
 //           lastSent = myPins[i];
@@ -145,20 +144,20 @@ void loop() {
                hoolCS();
               break;
               case 6:
-               fcombo();
+               CSA();
               break;
               case 10:
               hoolES();
               break;
               case 15:
-              ESA();
+              CS();
               break;
               case 14:
               ECS();
               break;
 
               case 4:
-              EHC();
+              hooligan();
               break;
 //           }
 //           Keyboard.releaseAll();
@@ -208,7 +207,7 @@ void ESA() {
   }else {
     qcb();
   }
-  mh_k();
+  hk();
 }
 
 
@@ -240,6 +239,9 @@ void cannonSpike() {
 //  h_kp();
 }
 
+void my_delay(int time) {
+}
+
 void ECS() {
   if(locL) {
     zigR();
@@ -247,6 +249,16 @@ void ECS() {
     zigL();
   }
   mh_k();
+//  h_kp();
+}
+
+void CS() {
+  if(locL) {
+    zigR();
+  }else {
+    zigL();
+  }
+  hk();
 //  h_kp();
 }
 
@@ -315,12 +327,23 @@ void v3_3_combo() {
 }
 
 void EHC() { // ex hooligan
-    if(locL) {
+   if(locL) {
     hcf();
   }else {
     hcb();
   }
     mh_p();
+    delay(400);
+    hk();
+}
+
+void hooligan() {
+  if(locL) {
+    hcf();
+  }else {
+    hcb();
+  }
+    hp();
     delay(400);
     hk();
 }
@@ -439,7 +462,7 @@ void hoolES() {
         hcb();
       }
       
-      mh_p();
+      hp();
 //      delay(300);
 //      hk();
 }
@@ -451,9 +474,9 @@ void hoolCS() {
         hcb();
       }
       
-      mh_p();
+      hp();
       delay(300);
-      hk();
+      l_kp();
 }
 
   void qcf() {
